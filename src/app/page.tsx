@@ -1,6 +1,7 @@
 import Hero from '@/FrontEnd/Home/Hero';
-import AboutWork from '@/FrontEnd/Home/AboutWork';
+import AboutWork from '@/FrontEnd/Home/Aboutwork';
 import CommunityImpact from '@/FrontEnd/Home/CommunityImpact';
+import Footer from '@/FrontEnd/Components/Footer';
 
 export default function Home() {
   return (
@@ -8,6 +9,7 @@ export default function Home() {
       <Hero />
       <AboutWork />
       <CommunityImpact />
+      <Footer />
     </main>
   );
 }
