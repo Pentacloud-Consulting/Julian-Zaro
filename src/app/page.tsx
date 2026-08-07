@@ -1,11 +1,13 @@
 import Hero from '@/FrontEnd/Home/Hero';
-import Aboutwork from '@/FrontEnd/Home/Aboutwork';
+import AboutWork from '@/FrontEnd/Home/AboutWork';
+import CommunityImpact from '@/FrontEnd/Home/CommunityImpact';
 
 export default function Home() {
   return (
     <main className="min-h-screen bg-black">
       <Hero />
-      <Aboutwork />
+      <AboutWork />
+      <CommunityImpact />
     </main>
   );
 }

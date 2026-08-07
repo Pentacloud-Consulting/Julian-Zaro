@@ -3,141 +3,160 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
-const stats = [
+const services = [
   {
-    image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1000&auto=format&fit=crop", // interviewing / talking
-    number: "44+",
-    title: "REAL STORIES",
-    desc: "Every conversation captures a genuine human experience, giving people a voice and inspiring thousands through authentic storytelling."
+    num: "01",
+    title: "REAL PEOPLE.\nREAL STORIES.",
+    desc: "Every journey begins with a conversation. Julian travels to meet people from different communities, listening to their experiences and sharing authentic stories that inspire empathy, understanding, and positive change.",
+    img: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&q=80&w=1000",
+    reverse: false
   },
   {
-    image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1000&auto=format&fit=crop", // editing / working
-    number: "8.5M+",
-    title: "COMMUNITY VIEWS",
-    desc: "Millions of people have watched these stories, helping meaningful conversations reach audiences across the world."
+    num: "02",
+    title: "BUILDING A\nGLOBAL COMMUNITY",
+    desc: "Each story brings thousands of people together. Through social media, the community grows with every interview, encouraging meaningful conversations and allowing supporters to help decide where the next mission begins.",
+    img: "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&q=80&w=1000",
+    reverse: true
   },
   {
-    image: "https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?q=80&w=1000&auto=format&fit=crop", // helping people / locals
-    number: "23K+",
-    title: "COMMUNITY MEMBERS",
-    desc: "A growing global community that supports, shares, and helps decide where the next humanitarian mission begins."
-  },
-  {
-    image: "https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?q=80&w=1000&auto=format&fit=crop", // charity / raised / money
-    number: "€860",
-    title: "RAISED FOR IMPACT",
-    desc: "Every contribution directly supports real people, with complete transparency throughout every mission."
+    num: "03",
+    title: "TURNING STORIES\nINTO IMPACT",
+    desc: "Every donation and every shared story helps create real-world change. Together, the community supports people",
+    img: "https://images.unsplash.com/photo-1531834685032-c34bf0d84c77?auto=format&fit=crop&q=80&w=1000",
+    reverse: false
   }
 ];
 
-export default function Aboutwork() {
+export default function AboutWork() {
   return (
-    <section className="w-full bg-white text-black py-24 relative overflow-hidden">
-      
-      <div className="max-w-[95rem] mx-auto mt-10 px-6 md:px-12">
+    <section className="w-full bg-white text-black pt-24 pb-8 relative overflow-hidden font-sans">
+      <div className="max-w-[85rem] mx-auto px-6 md:px-12">
         
         {/* Header Row */}
-        <div className="flex flex-col w-full mb-24 relative">
+        <div className="w-full relative mb-16 md:mb-20">
           
           {/* Small Text - Positioned top left */}
-          <motion.div 
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            className="md:absolute left-0 top-2 text-[10px] font-semibold tracking-[0.1em] uppercase text-gray-500 leading-[1.4] mb-12 md:mb-0"
-          >
-            ABOUT<br/>THE<br/>MOVEMENT
-          </motion.div>
-          
-          {/* ABOUT THE PROJECT - Centered but shifted slightly right */}
-          <div className="w-full flex justify-center pt-4 md:pt-0 pl-8 md:pl-24 lg:pl-32">
-            <div className="flex flex-col items-start">
-              <motion.h2 
-                initial={{ opacity: 0, x: -100 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8, ease: "easeOut" }}
-                className="text-[13vw] md:text-[6.5rem] lg:text-[7.5rem] font-medium leading-[0.85] tracking-tight text-brand-dark -ml-8 md:-ml-12 lg:-ml-16"
-              >
-                ABOUT
-              </motion.h2>
-              <motion.h2 
-                initial={{ opacity: 0, x: 100 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
-                className="text-[13vw] md:text-[6.5rem] lg:text-[7.5rem] font-medium leading-[0.85] tracking-tight text-brand ml-12 md:ml-24 lg:ml-32"
-              >
-                THE PROJECT
-              </motion.h2>
-            </div>
-          </div>
-        </div>
-
-        {/* Stats Section with Bracket */}
-        <div className="relative flex w-full">
-          
-          {/* Decorative Bracket and DEV.UN */}
-          {/* It spans the height of the stats container precisely. */}
-          <motion.div 
+          <motion.p 
             initial={{ opacity: 0, x: -100 }}
             whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: false, amount: 0.1 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="hidden md:block absolute top-0 bottom-0 left-6 w-[120px] lg:w-[170px] border-t border-r border-b border-gray-300"
+            className="absolute left-0 top-2 text-[10px] md:text-xs font-medium tracking-[0.05em] uppercase text-gray-500 leading-relaxed max-w-[140px] z-10"
           >
-             <div className="absolute top-1/2 -translate-y-1/2 left-0 right-8 flex flex-col items-center gap-1 text-[3.5rem] lg:text-[4.5rem] font-light text-transparent leading-[0.85]" style={{ WebkitTextStroke: '1px #A3A3A3' }}>
-               {"JULIAN".split("").map((char, i) => (
-                  <span key={`j-${i}`}>{char}</span>
-               ))}
-               <div className="h-6"></div>
-               {"ZARO".split("").map((char, i) => (
-                  <span key={`z-${i}`}>{char}</span>
-               ))}
-             </div>
-          </motion.div>
-
-          {/* Items List */}
-          <div className="flex-1 flex flex-col gap-12 md:gap-16 w-full pl-0 md:pl-[160px] lg:pl-[220px] py-4 relative z-10">
-            {stats.map((item, idx) => (
-              <motion.div 
-                key={idx} 
-                initial={{ opacity: 0, x: 100 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8, ease: "easeOut", delay: idx * 0.1 }}
-                className="group flex flex-col md:flex-row w-full items-center md:items-start cursor-pointer"
-              >
-                
-                {/* Image Box */}
-                <div className="w-full md:w-[45%] lg:w-[45%] pr-0 md:pr-12 lg:pr-24">
-                  <div className="w-full aspect-[4/3] overflow-hidden">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img 
-                      src={item.image} 
-                      alt={item.title} 
-                      className="w-full h-full object-cover bg-gray-100 transition-transform duration-700 ease-out group-hover:scale-110"
-                    />
-                  </div>
-                </div>
-
-                {/* Text Info Box */}
-                <div className="w-full md:w-[55%] lg:w-[55%] pt-6 md:pt-4 flex flex-col transition-transform duration-500 ease-out group-hover:translate-x-2">
-                  <h3 className="text-6xl md:text-[5rem] lg:text-[6rem] font-medium tracking-tight text-black mb-3 leading-none transition-colors duration-500 group-hover:text-brand">
-                    {item.number}
-                  </h3>
-                  <div className="flex items-center gap-4 mb-4">
-                    <span className="text-sm md:text-base font-semibold tracking-wide text-black uppercase transition-colors duration-500 group-hover:text-brand-dark">
-                      {item.title}
-                    </span>
-                    <div className="h-[1px] w-8 bg-gray-300 transition-all duration-500 group-hover:w-16 group-hover:bg-brand"></div>
-                  </div>
-                  <p className="text-gray-500 text-[12px] md:text-[13px] leading-relaxed max-w-[320px]">
-                    {item.desc}
-                  </p>
-                </div>
-                
-              </motion.div>
-            ))}
+            ABOUT<br/>THE MOVEMENT
+          </motion.p>
+          
+          {/* ABOUT PROJECTS - Centered with staggered layout */}
+          <div className="flex flex-col items-center z-0 w-full pointer-events-none pt-16 md:pt-20">
+            <motion.h2 
+              initial={{ opacity: 0, x: -150 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: false, amount: 0.1 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+              className="text-[12vw] md:text-[8.5rem] lg:text-[10rem] font-normal leading-[0.85] tracking-tight text-[#171717] -ml-24 md:-ml-48"
+            >
+              OUR
+            </motion.h2>
+            <motion.h2 
+              initial={{ opacity: 0, x: 150 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: false, amount: 0.1 }}
+              transition={{ duration: 0.8, ease: "easeOut", delay: 0.1 }}
+              className="text-[12vw] md:text-[8.5rem] lg:text-[10rem] font-normal leading-[0.85] tracking-tight text-brand ml-16 md:ml-32"
+            >
+              MISSION
+            </motion.h2>
           </div>
+
+          {/* Top Right Logo */}
+          <motion.div 
+            initial={{ opacity: 0, x: 100 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: false, amount: 0.1 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="absolute right-0 top-2 flex items-center gap-1.5 text-gray-500 font-bold tracking-widest text-[10px] md:text-xs z-10"
+          >
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-gray-500">
+              <polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5 12 2"></polygon>
+            </svg>
+            JULIAN ZARO
+          </motion.div>
           
         </div>
+
+        {/* Services List */}
+        <div className="flex flex-col w-full gap-32 md:gap-40 pt-0">
+          {services.map((item, idx) => (
+            <div key={idx} className={`flex flex-col md:flex-row items-center justify-between w-full gap-16 md:gap-24 ${item.reverse ? 'md:flex-row-reverse' : ''}`}>
+              
+              {/* Text Info Box */}
+              <motion.div 
+                initial={{ opacity: 0, x: item.reverse ? 50 : -50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: false, amount: 0.2 }}
+                transition={{ duration: 0.8, ease: "easeOut" }}
+                className="w-full md:w-1/2 flex flex-col items-start"
+              >
+                <div className="flex items-center gap-4 mb-6">
+                  <h3 className="text-xl md:text-[22px] font-medium tracking-wide text-[#171717] uppercase whitespace-pre-line">
+                    {item.title}
+                  </h3>
+                  <div className="h-[1px] w-8 bg-gray-300"></div>
+                </div>
+                <p className="text-gray-500 text-sm leading-[1.8] max-w-[420px]">
+                  {item.desc}
+                </p>
+              </motion.div>
+              
+              {/* Image Box */}
+              <motion.div 
+                initial={{ opacity: 0, x: item.reverse ? 100 : -100 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: false, amount: 0.2 }}
+                transition={{ duration: 0.8, ease: "easeOut" }}
+                className="w-full md:w-1/2 relative"
+              >
+                {/* Offset border frame */}
+                <div className={`absolute border border-gray-300 w-[95%] h-[95%] z-0 ${item.reverse ? '-top-6 -right-6 md:-top-10 md:-right-10' : '-top-6 -left-6 md:-top-10 md:-left-10'}`}></div>
+                
+                {/* The image */}
+                <div className="relative z-10 w-[95%] h-[300px] md:h-[420px] mx-auto overflow-hidden">
+                  <img 
+                    src={item.img} 
+                    alt={item.title} 
+                    className="w-full h-full object-cover bg-gray-100 hover:scale-105 transition-transform duration-700 ease-out"
+                  />
+                </div>
+                
+                {/* The Number */}
+                <div 
+                  className={`absolute z-20 text-[4.5rem] md:text-[5.5rem] lg:text-[6.5rem] font-normal text-transparent leading-none pointer-events-none select-none ${item.reverse ? '-top-12 md:-top-24 -left-4 md:-left-12 lg:-left-16' : '-top-12 md:-top-24 -right-4 md:-right-12 lg:-right-16'}`} 
+                  style={{ WebkitTextStroke: '2px #5dc942' }}
+                >
+                  {item.num}
+                </div>
+              </motion.div>
+              
+            </div>
+          ))}
+        </div>
+
+        {/* Bottom Button */}
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, amount: 0.1 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="mt-12 w-full flex justify-start"
+        >
+          <button 
+            className="bg-brand hover:bg-[#4ea837] transition-colors text-white text-xs font-semibold tracking-widest uppercase py-4 px-8 relative"
+            style={{ clipPath: 'polygon(0% 0%, 93% 0%, 100% 50%, 93% 100%, 0% 100%)' }}
+          >
+            Discover Our Impact &gt;
+          </button>
+        </motion.div>
+
       </div>
     </section>
   );

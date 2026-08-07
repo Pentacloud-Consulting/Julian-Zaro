@@ -22,7 +22,7 @@ export default function Hero() {
   useEffect(() => {
     const timer = setInterval(() => {
       setIndex((prev) => (prev + 1) % words.length);
-    }, 5000);
+    }, 3000);
     return () => clearInterval(timer);
   }, []);
 
