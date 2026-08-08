@@ -1,6 +1,7 @@
 import Hero from '@/FrontEnd/Home/Hero';
 import AboutWork from '@/FrontEnd/Home/Aboutwork';
 import CommunityImpact from '@/FrontEnd/Home/CommunityImpact';
+import Instragram from '@/FrontEnd/Home/Instragram';
 import Footer from '@/FrontEnd/Components/Footer';
 
 export default function Home() {
@@ -9,6 +10,7 @@ export default function Home() {
       <Hero />
       <AboutWork />
       <CommunityImpact />
+      <Instragram />
       <Footer />
     </main>
   );
