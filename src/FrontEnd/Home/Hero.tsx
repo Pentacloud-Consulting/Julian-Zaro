@@ -41,13 +41,13 @@ export default function Hero() {
     >
       {/* Background Image 1 */}
       <div 
-        className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat pointer-events-none"
+        className="absolute inset-0 w-full h-full bg-cover bg-[50%_20%] bg-no-repeat pointer-events-none"
         style={{ backgroundImage: 'url("/Home Images/Hero/Julian Image 1.webp")' }}
       ></div>
 
       {/* Background Image 2 - Cursor Reveal */}
       <motion.div 
-        className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat pointer-events-none z-0 hidden md:block"
+        className="absolute inset-0 w-full h-full bg-cover bg-[50%_20%] bg-no-repeat pointer-events-none z-0 hidden md:block"
         style={{ 
           backgroundImage: 'url("/Home Images/Hero/Julian Image 2.webp")',
           maskImage,
@@ -65,7 +65,7 @@ export default function Hero() {
       <Navbar />
 
       {/* Main Content */}
-      <div className="relative z-10 flex-1 flex flex-col justify-center px-10 md:px-14 pb-12">
+      <div className="relative z-10 flex-1 flex flex-col justify-center px-10 md:px-14 pb-12 pt-[15vh]">
         
         {/* Giant Hero Text */}
         <div className="h-[9vw] relative w-full overflow-visible" style={{ perspective: '1000px' }}>
@@ -90,13 +90,24 @@ export default function Hero() {
           </h2>
           
           <div className="flex flex-wrap items-center gap-4">
-            <button className="bg-brand hover:bg-brand-hover transition-colors text-brand-dark text-[15px] font-medium py-2.5 pl-2.5 pr-6 rounded-full flex items-center gap-3 w-fit">
-              <div className="w-8 h-8 rounded-full bg-brand-dark flex items-center justify-center">
+            <button className="group/btn relative bg-brand hover:bg-brand-hover transition-colors text-brand-dark text-[15px] font-medium py-2.5 pl-2.5 pr-6 rounded-full flex items-center w-fit overflow-hidden">
+              {/* Invisible placeholder for sizing */}
+              <div className="opacity-0 flex items-center gap-3 pointer-events-none select-none">
+                <div className="w-8 h-8 rounded-full"></div>
+                <span>Watch Stories</span>
+              </div>
+              
+              {/* Animated Icon */}
+              <div className="absolute left-[10px] top-1/2 -translate-y-1/2 group-hover/btn:left-[calc(100%-42px)] transition-all duration-500 ease-out w-8 h-8 rounded-full bg-brand-dark flex items-center justify-center">
                 <svg width="12" height="12" viewBox="0 0 24 24" className="fill-brand stroke-brand" strokeWidth="1" strokeLinejoin="round">
                   <polygon points="7 5 19 12 7 19 7 5"></polygon>
                 </svg>
               </div>
-              Watch Stories
+
+              {/* Animated Text */}
+              <span className="absolute left-[54px] top-1/2 -translate-y-1/2 group-hover/btn:left-[24px] transition-all duration-500 ease-out whitespace-nowrap">
+                Watch Stories
+              </span>
             </button>
             
             <button className="bg-white/5 backdrop-blur-sm border border-white/30 hover:bg-white/10 transition-colors text-white text-[15px] font-medium py-3 px-7 rounded-full flex items-center gap-2 w-fit">

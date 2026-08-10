@@ -8,21 +8,21 @@ const services = [
     num: "01",
     title: "REAL PEOPLE.\nREAL STORIES.",
     desc: "Every journey begins with a conversation. Julian travels to meet people from different communities, listening to their experiences and sharing authentic stories that inspire empathy, understanding, and positive change.",
-    img: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=80&w=1000",
+    img: "/JZ Images/j1.webp",
     reverse: false
   },
   {
     num: "02",
     title: "BUILDING A\nGLOBAL COMMUNITY",
     desc: "Each story brings thousands of people together. Through social media, the community grows with every interview, encouraging meaningful conversations and allowing supporters to help decide where the next mission begins.",
-    img: "https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&q=80&w=1000",
+    img: "/JZ Images/j6.webp",
     reverse: true
   },
   {
     num: "03",
     title: "TURNING STORIES\nINTO IMPACT",
     desc: "Every donation and every shared story helps create real-world change. Together, the community supports people",
-    img: "https://images.unsplash.com/photo-1593113598332-cd288d649433?auto=format&fit=crop&q=80&w=1000",
+    img: "/JZ Images/j7.webp",
     reverse: false
   }
 ];

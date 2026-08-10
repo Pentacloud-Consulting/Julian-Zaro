@@ -5,25 +5,25 @@ import { motion } from 'framer-motion';
 
 const stats = [
   {
-    image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1000&auto=format&fit=crop", // interviewing / talking
+    image: "/JZ Images/j4.webp", // interviewing / talking
     number: "44+",
     title: "REAL STORIES",
     desc: "Every conversation captures a genuine human experience, giving people a voice and inspiring thousands through authentic storytelling."
   },
   {
-    image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1000&auto=format&fit=crop", // editing / working
+    image: "/JZ Images/j5.webp", // editing / working
     number: "8.5M+",
     title: "COMMUNITY VIEWS",
     desc: "Millions of people have watched these stories, helping meaningful conversations reach audiences across the world."
   },
   {
-    image: "https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?q=80&w=1000&auto=format&fit=crop", // helping people / locals
+    image: "/JZ Images/j8.webp", // helping people / locals
     number: "23K+",
     title: "COMMUNITY MEMBERS",
     desc: "A growing global community that supports, shares, and helps decide where the next humanitarian mission begins."
   },
   {
-    image: "https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?q=80&w=1000&auto=format&fit=crop", // charity / raised / money
+    image: "/JZ Images/j2.webp", // charity / raised / money
     number: "€860",
     title: "RAISED FOR IMPACT",
     desc: "Every contribution directly supports real people, with complete transparency throughout every mission."
