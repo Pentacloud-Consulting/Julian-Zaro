@@ -30,11 +30,11 @@ export default function Navbar() {
 
       {/* Links */}
       <div className="hidden md:flex gap-12 text-[10px] tracking-[0.3em] font-bold uppercase ml-8 text-white">
-        <Link href="#" className="hover:text-gray-300 transition-colors">Project</Link>
+        <Link href="/" className="hover:text-gray-300 transition-colors">Home</Link>
         <Link href="#" className="hover:text-gray-300 transition-colors">Stories</Link>
         <Link href="#" className="hover:text-gray-300 transition-colors">How it Works</Link>
         <Link href="#" className="hover:text-gray-300 transition-colors">Support</Link>
-        <Link href="#" className="hover:text-gray-300 transition-colors">Contact</Link>
+        <Link href="/contact" className="hover:text-gray-300 transition-colors">Contact</Link>
       </div>
 
       {/* Actions */}
