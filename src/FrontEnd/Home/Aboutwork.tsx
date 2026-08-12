@@ -29,8 +29,8 @@ const services = [
 
 export default function AboutWork() {
   return (
-    <section className="w-full bg-white text-black pt-24 pb-8 relative overflow-hidden font-sans">
-      <div className="max-w-[85rem] mx-auto px-6 md:px-12">
+    <section className="w-full bg-white text-black pt-12 md:pt-24 pb-8 relative overflow-hidden font-sans">
+      <div className="max-w-[85rem] mx-auto px-5 md:px-12">
         
         {/* Header Row */}
         <div className="w-full relative mb-16 md:mb-20">
@@ -47,13 +47,13 @@ export default function AboutWork() {
           </motion.p>
           
           {/* ABOUT PROJECTS - Centered with staggered layout */}
-          <div className="flex flex-col items-center z-0 w-full pointer-events-none pt-16 md:pt-20">
+          <div className="flex flex-col items-center z-0 w-full pointer-events-none pt-10 md:pt-20">
             <motion.h2 
               initial={{ opacity: 0, x: -150 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: false, amount: 0.1 }}
               transition={{ duration: 0.8, ease: "easeOut" }}
-              className="text-[12vw] md:text-[8.5rem] lg:text-[10rem] font-normal leading-[0.85] tracking-tight text-[#171717] -ml-24 md:-ml-48"
+              className="text-[15vw] md:text-[8.5rem] lg:text-[10rem] font-normal leading-[0.85] tracking-tight text-[#171717] -ml-6 md:-ml-48"
             >
               OUR
             </motion.h2>
@@ -62,7 +62,7 @@ export default function AboutWork() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: false, amount: 0.1 }}
               transition={{ duration: 0.8, ease: "easeOut", delay: 0.1 }}
-              className="text-[12vw] md:text-[8.5rem] lg:text-[10rem] font-normal leading-[0.85] tracking-tight text-brand ml-16 md:ml-32"
+              className="text-[15vw] md:text-[8.5rem] lg:text-[10rem] font-normal leading-[0.85] tracking-tight text-brand ml-6 md:ml-32"
             >
               MISSION
             </motion.h2>
@@ -85,9 +85,9 @@ export default function AboutWork() {
         </div>
 
         {/* Services List */}
-        <div className="flex flex-col w-full gap-32 md:gap-40 pt-0">
+        <div className="flex flex-col w-full gap-16 md:gap-40 pt-0">
           {services.map((item, idx) => (
-            <div key={idx} className={`flex flex-col md:flex-row items-center justify-between w-full gap-16 md:gap-24 ${item.reverse ? 'md:flex-row-reverse' : ''}`}>
+            <div key={idx} className={`flex flex-col md:flex-row items-center justify-between w-full gap-8 md:gap-24 ${item.reverse ? 'md:flex-row-reverse' : ''}`}>
               
               {/* Text Info Box */}
               <motion.div 
@@ -97,13 +97,13 @@ export default function AboutWork() {
                 transition={{ duration: 0.8, ease: "easeOut" }}
                 className="w-full md:w-1/2 flex flex-col items-start"
               >
-                <div className="flex items-center gap-4 mb-6">
-                  <h3 className="text-xl md:text-[22px] font-medium tracking-wide text-[#171717] uppercase whitespace-pre-line">
+                <div className="flex items-center gap-4 mb-3 md:mb-6">
+                  <h3 className="text-[17px] md:text-[22px] font-medium tracking-wide text-[#171717] uppercase whitespace-pre-line">
                     {item.title}
                   </h3>
-                  <div className="h-[1px] w-8 bg-gray-300"></div>
+                  <div className="h-[1px] w-6 md:w-8 bg-gray-300"></div>
                 </div>
-                <p className="text-gray-500 text-sm leading-[1.8] max-w-[420px]">
+                <p className="text-gray-500 text-[13px] md:text-sm leading-[1.7] md:leading-[1.8] max-w-[420px]">
                   {item.desc}
                 </p>
               </motion.div>
@@ -114,13 +114,13 @@ export default function AboutWork() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: false, amount: 0.2 }}
                 transition={{ duration: 0.8, ease: "easeOut" }}
-                className="w-full md:w-1/2 relative"
+                className="w-full md:w-1/2 relative mt-4 md:mt-0"
               >
                 {/* Offset border frame */}
-                <div className={`absolute border border-gray-300 w-[95%] h-[95%] z-0 ${item.reverse ? '-top-6 -right-6 md:-top-10 md:-right-10' : '-top-6 -left-6 md:-top-10 md:-left-10'}`}></div>
+                <div className={`absolute border border-gray-300 w-[95%] h-[95%] z-0 ${item.reverse ? '-top-3 -right-3 md:-top-10 md:-right-10' : '-top-3 -left-3 md:-top-10 md:-left-10'}`}></div>
                 
                 {/* The image */}
-                <div className="relative z-10 w-[95%] h-[300px] md:h-[420px] mx-auto overflow-hidden">
+                <div className="relative z-10 w-[95%] h-[200px] md:h-[420px] mx-auto overflow-hidden">
                   <img 
                     src={item.img} 
                     alt={item.title} 
@@ -130,7 +130,7 @@ export default function AboutWork() {
                 
                 {/* The Number */}
                 <div 
-                  className={`absolute z-20 text-[4.5rem] md:text-[5.5rem] lg:text-[6.5rem] font-normal text-transparent leading-none pointer-events-none select-none ${item.reverse ? '-top-12 md:-top-24 -left-4 md:-left-12 lg:-left-16' : '-top-12 md:-top-24 -right-4 md:-right-12 lg:-right-16'}`} 
+                  className={`absolute z-20 text-[3.5rem] md:text-[5.5rem] lg:text-[6.5rem] font-normal text-transparent leading-none pointer-events-none select-none ${item.reverse ? '-top-6 md:-top-24 -left-2 md:-left-12 lg:-left-16' : '-top-6 md:-top-24 -right-2 md:-right-12 lg:-right-16'}`} 
                   style={{ WebkitTextStroke: '2px #5dc942' }}
                 >
                   {item.num}

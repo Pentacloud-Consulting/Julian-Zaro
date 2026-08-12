@@ -32,12 +32,12 @@ const stats = [
 
 export default function CommunityImpact() {
   return (
-    <section className="w-full bg-white text-black pt-4 pb-24 relative overflow-hidden">
+    <section className="w-full bg-white text-black pt-4 pb-12 md:pb-24 relative overflow-hidden">
       
-      <div className="max-w-[95rem] mx-auto mt-4 px-6 md:px-12">
+      <div className="max-w-[95rem] mx-auto mt-4 px-5 md:px-12">
         
         {/* Header Row */}
-        <div className="flex flex-col w-full mb-24 relative">
+        <div className="flex flex-col w-full mb-12 md:mb-24 relative">
           
           {/* Small Text - Positioned top left */}
           <motion.div 
@@ -50,13 +50,13 @@ export default function CommunityImpact() {
           </motion.div>
           
           {/* ABOUT THE PROJECT - Centered but shifted slightly right */}
-          <div className="w-full flex justify-center pt-4 md:pt-0 pl-8 md:pl-24 lg:pl-32">
+          <div className="w-full flex justify-center pt-8 md:pt-0 pl-2 md:pl-24 lg:pl-32">
             <div className="flex flex-col items-start">
               <motion.h2 
                 initial={{ opacity: 0, x: -100 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8, ease: "easeOut" }}
-                className="text-[13vw] md:text-[6.5rem] lg:text-[7.5rem] font-medium leading-[0.85] tracking-tight text-brand-dark -ml-8 md:-ml-12 lg:-ml-16"
+                className="text-[15vw] md:text-[6.5rem] lg:text-[7.5rem] font-medium leading-[0.85] tracking-tight text-brand-dark -ml-2 md:-ml-12 lg:-ml-16"
               >
                 COMMUNITY
               </motion.h2>
@@ -64,7 +64,7 @@ export default function CommunityImpact() {
                 initial={{ opacity: 0, x: 100 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
-                className="text-[13vw] md:text-[6.5rem] lg:text-[7.5rem] font-medium leading-[0.85] tracking-tight text-brand ml-12 md:ml-24 lg:ml-32"
+                className="text-[15vw] md:text-[6.5rem] lg:text-[7.5rem] font-medium leading-[0.85] tracking-tight text-brand ml-4 md:ml-24 lg:ml-32"
               >
                 IMPACT
               </motion.h2>
@@ -95,14 +95,14 @@ export default function CommunityImpact() {
           </motion.div>
 
           {/* Items List */}
-          <div className="flex-1 flex flex-col gap-12 md:gap-16 w-full pl-0 md:pl-[160px] lg:pl-[220px] py-4 relative z-10">
+          <div className="flex-1 grid grid-cols-2 md:flex md:flex-col gap-4 sm:gap-6 md:gap-16 w-full pl-0 md:pl-[160px] lg:pl-[220px] py-2 md:py-4 relative z-10">
             {stats.map((item, idx) => (
               <motion.div 
                 key={idx} 
                 initial={{ opacity: 0, x: 100 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8, ease: "easeOut", delay: idx * 0.1 }}
-                className="group flex flex-col md:flex-row w-full items-center md:items-start cursor-pointer"
+                className="group flex flex-col md:flex-row w-full items-start cursor-pointer"
               >
                 
                 {/* Image Box */}
@@ -118,17 +118,17 @@ export default function CommunityImpact() {
                 </div>
 
                 {/* Text Info Box */}
-                <div className="w-full md:w-[55%] lg:w-[55%] pt-6 md:pt-4 flex flex-col transition-transform duration-500 ease-out group-hover:translate-x-2">
-                  <h3 className="text-6xl md:text-[5rem] lg:text-[6rem] font-medium tracking-tight text-black mb-3 leading-none transition-colors duration-500 group-hover:text-brand">
+                <div className="w-full md:w-[55%] lg:w-[55%] pt-3 md:pt-4 flex flex-col transition-transform duration-500 ease-out md:group-hover:translate-x-2">
+                  <h3 className="text-3xl sm:text-4xl md:text-[5rem] lg:text-[6rem] font-medium tracking-tight text-black mb-1 md:mb-3 leading-none transition-colors duration-500 group-hover:text-brand">
                     {item.number}
                   </h3>
-                  <div className="flex items-center gap-4 mb-4">
-                    <span className="text-sm md:text-base font-semibold tracking-wide text-black uppercase transition-colors duration-500 group-hover:text-brand-dark">
+                  <div className="flex items-center gap-2 md:gap-4 mb-1.5 md:mb-4">
+                    <span className="text-[10px] md:text-base font-bold tracking-wider md:tracking-wide text-black uppercase transition-colors duration-500 group-hover:text-brand-dark">
                       {item.title}
                     </span>
-                    <div className="h-[1px] w-8 bg-gray-300 transition-all duration-500 group-hover:w-16 group-hover:bg-brand"></div>
+                    <div className="hidden md:block h-[1px] w-8 bg-gray-300 transition-all duration-500 group-hover:w-16 group-hover:bg-brand"></div>
                   </div>
-                  <p className="text-gray-500 text-[12px] md:text-[13px] leading-relaxed max-w-[320px]">
+                  <p className="text-gray-500 text-[10px] sm:text-[11px] md:text-[13px] leading-[1.5] md:leading-relaxed max-w-[320px]">
                     {item.desc}
                   </p>
                 </div>

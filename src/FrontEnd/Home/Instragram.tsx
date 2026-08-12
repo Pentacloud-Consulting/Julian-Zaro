@@ -1,238 +1,284 @@
 "use client";
 
-import React, { useState } from 'react';
-import Image from 'next/image';
-import { motion, AnimatePresence } from 'framer-motion';
+import React, { useState, useRef } from 'react';
+import { motion, AnimatePresence, useAnimationFrame, useMotionValue, PanInfo } from 'framer-motion';
+
+const stories = [
+  {
+    id: 1,
+    src: "/thumbnails/thumb_1.jpg",
+    title: "Two strangers, one conversation.",
+    category: "ON CAMPUS",
+    link: "https://www.instagram.com/p/DbAzSpnTUhc/embed"
+  },
+  {
+    id: 2,
+    src: "/thumbnails/thumb_2.jpg",
+    title: "One question can open a whole life story.",
+    category: "EVERYDAY STORIES",
+    link: "https://www.instagram.com/p/DbaDVVGDN0J/embed"
+  },
+  {
+    id: 3,
+    src: "/thumbnails/thumb_3.jpg",
+    title: "Finding joy in the unexpected.",
+    category: "JOY",
+    link: "https://www.instagram.com/p/DbB4eWRTmj8/embed"
+  },
+  {
+    id: 4,
+    src: "/thumbnails/thumb_4.jpg",
+    title: "Big days. Small dreams.",
+    category: "MOMENTS",
+    link: "https://www.instagram.com/p/DbPwA6th_n8/embed"
+  },
+  {
+    id: 5,
+    src: "/thumbnails/thumb_5.jpg",
+    title: "What moves people, they often carry with them.",
+    category: "HUMAN STORIES",
+    link: "https://www.instagram.com/p/DbGfH9izrK8/embed"
+  },
+  {
+    id: 6,
+    src: "/thumbnails/thumb_6.jpg",
+    title: "A journey of a thousand miles.",
+    category: "DISCOVERIES",
+    link: "https://www.instagram.com/p/Da0MeCTyKQx/embed"
+  },
+  {
+    id: 7,
+    src: "/thumbnails/thumb_1.jpg", // Placeholder
+    title: "The power of a single smile.",
+    category: "COMMUNITY",
+    link: "https://www.instagram.com/p/DbAzSpnTUhc/embed"
+  },
+  {
+    id: 8,
+    src: "/thumbnails/thumb_2.jpg", // Placeholder
+    title: "Connections that cross borders.",
+    category: "GLOBAL",
+    link: "https://www.instagram.com/p/DbaDVVGDN0J/embed"
+  }
+];
 
 const Instragram = () => {
   const [activeVideo, setActiveVideo] = useState<string | null>(null);
+  
+  // States for interaction
+  const [isHovered, setIsHovered] = useState(false);
+  const [isDragging, setIsDragging] = useState(false);
+  const dragAmountRef = useRef(0);
+
+  // Framer motion value to track rotation manually
+  const rotation = useMotionValue(0);
+
+  // Auto-rotate logic
+  useAnimationFrame((_, delta) => {
+    // Only auto-rotate if not hovering on a card and not dragging
+    if (!isHovered && !isDragging) {
+      rotation.set(rotation.get() + delta * 0.015);
+    }
+  });
+
+  // Drag handlers
+  const handlePan = (_: any, info: PanInfo) => {
+    rotation.set(rotation.get() + info.delta.x * 0.4);
+    dragAmountRef.current += Math.abs(info.delta.x);
+  };
+
+  const handlePanStart = () => {
+    setIsDragging(true);
+    dragAmountRef.current = 0; // Reset drag amount to differentiate between click and drag
+  };
+
+  const handlePanEnd = () => {
+    setIsDragging(false);
+  };
 
   return (
-    <section className="relative w-full bg-neutral-900 flex items-center overflow-hidden py-16 md:py-20">
-      {/* Background Image */}
-      <div className="absolute inset-0 z-0">
-        <img
-          src="https://images.unsplash.com/photo-1473448912268-2022ce9509d8?q=80&w=2000&auto=format&fit=crop"
-          alt="Background"
-          className="w-full h-full object-cover opacity-100"
-        />
-        {/* Gradient Overlay for text readability (only darkens the left side) */}
-        <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent"></div>
-      </div>
+    <section className="w-full bg-white text-black pt-0 pb-8 md:pt-0 md:pb-16 font-sans overflow-hidden relative">
+       
+       <style>{`
+         .carousel-item {
+           transform: rotateY(var(--rotY)) translateZ(130px);
+         }
+         @media (min-width: 768px) {
+           .carousel-item {
+             transform: rotateY(var(--rotY)) translateZ(310px);
+           }
+         }
+       `}</style>
 
-      <div className="relative z-10 max-w-[1400px] mx-auto px-6 w-full flex flex-col lg:flex-row items-center justify-between gap-12">
-        {/* Left Content */}
-        <div className="lg:w-[45%] flex flex-col justify-center space-y-10">
-          
+       {/* Top Header Section - Matching Image 1 */}
+       <div className="max-w-[85rem] mx-auto px-5 md:px-12 mb-6 md:mb-12 flex flex-col md:flex-row md:items-end justify-between gap-6 z-10 relative">
           <motion.div 
-            className="space-y-4"
-            initial={{ opacity: 0, x: -100 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: false, amount: 0.3 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
             transition={{ duration: 0.8, ease: "easeOut" }}
+            className="flex flex-col gap-3 md:gap-4"
           >
-            {/* Small Label */}
-            <p className="text-gray-400 text-sm font-semibold tracking-[0.2em] uppercase">
-              From The Community
-            </p>
-            
-            {/* Headline */}
-            <h2 className="text-5xl md:text-7xl font-bold leading-[1.1] tracking-tight text-white uppercase">
-              Discover <br />
-              <span className="text-[#00FF66]">Real Stories</span>
-            </h2>
+             <div className="flex items-center gap-3">
+                <span className="w-6 h-[1px] bg-[#5dc942]"></span>
+                <p className="text-[#5dc942] text-[10px] md:text-xs font-bold tracking-[0.2em] uppercase">
+                  Community Voices
+                </p>
+             </div>
+             
+             <h2 className="text-3xl md:text-5xl lg:text-6xl font-light leading-[1.05] tracking-tighter text-black">
+               Real stories from <br className="hidden md:block" />
+               <span className="font-serif italic text-[#5dc942]">real people.</span>
+             </h2>
           </motion.div>
 
-          {/* Watch Video Button / Main CTA */}
           <motion.a 
-            href="https://www.instagram.com/julianzaro?igsh=MThkdHBrdGh1djU3MQ%3D%3D"
+            href="https://www.instagram.com/julianzaro"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-6 cursor-pointer group w-fit mt-2"
-            initial={{ opacity: 0, x: 100 }}
+            initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: false, amount: 0.3 }}
+            viewport={{ once: true }}
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+            className="group hidden md:flex items-center gap-4 text-xs md:text-sm font-bold tracking-[0.15em] uppercase text-black hover:text-[#5dc942] transition-colors"
           >
-            <div className="w-14 h-14 rounded-full border-2 border-[#00FF66] flex items-center justify-center group-hover:bg-[#00FF66] transition-colors duration-300">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-                className="w-5 h-5 text-[#00FF66] group-hover:text-black transition-colors duration-300"
-              >
-                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" />
-              </svg>
-            </div>
-            <span className="text-white group-hover:text-[#00FF66] transition-colors duration-300 text-sm md:text-base font-semibold tracking-widest uppercase flex items-center gap-2">
-              Explore All Stories <span className="text-lg">→</span>
-            </span>
+             Explore Instagram
+             <div className="w-10 h-10 md:w-12 md:h-12 rounded-full border border-gray-300 flex items-center justify-center group-hover:border-[#5dc942] transition-colors duration-300">
+               <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-black group-hover:text-[#5dc942] transition-colors">
+                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                  <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+               </svg>
+             </div>
           </motion.a>
+       </div>
 
-          {/* Description text */}
-          <motion.div 
-            className="max-w-md"
-            initial={{ opacity: 0, x: -100 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: false, amount: 0.3 }}
-            transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }}
-          >
-            <p className="text-gray-300 text-base leading-relaxed">
-              Every person has a story worth hearing. <br />
-              From a quick conversation on the street <br />
-              to moments that stay with us long after — <br />
-              we listen, we share, and we let the world hear.
-            </p>
-          </motion.div>
+       {/* 3D Curved Carousel (Matching Image 2) */}
+       <div className="w-full carousel-container overflow-visible py-4 md:py-16 relative flex justify-center [perspective:1000px] md:[perspective:1200px]">
           
-        </div>
+          {/* White Fades for Edges to hide the back elements smoothly */}
+          <div className="hidden md:block absolute top-0 left-0 w-[25%] md:w-[30%] h-full bg-gradient-to-r from-white via-white/80 to-transparent z-20 pointer-events-none"></div>
+          <div className="hidden md:block absolute top-0 right-0 w-[25%] md:w-[30%] h-full bg-gradient-to-l from-white via-white/80 to-transparent z-20 pointer-events-none"></div>
 
-        {/* Right Content - Grid of Video Thumbnails */}
-        <motion.div 
-          className="lg:w-[55%] w-full"
-          initial={{ opacity: 0, x: 100 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: false, amount: 0.3 }}
-          transition={{ duration: 0.8, ease: "easeOut", delay: 0.3 }}
-        >
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-5 relative">
-            {/* Row 1 */}
-            <div className="col-span-1 hidden md:block"></div>
-            <div className="col-span-1 hidden md:block"></div>
-            <div className="col-span-1 mt-12 md:mt-0">
-              <VideoThumbnail 
-                src="/thumbnails/thumb_1.jpg" 
-                title="Two strangers, one conversation."
-                category="ON CAMPUS"
-                onClick={() => setActiveVideo("https://www.instagram.com/p/DbAzSpnTUhc/embed")}
-              />
-            </div>
-
-            {/* Row 2 */}
-            <div className="col-span-1 hidden md:block"></div>
-            <div className="col-span-1">
-              <VideoThumbnail 
-                src="/thumbnails/thumb_2.jpg" 
-                title="One question can open a whole life story."
-                category="EVERYDAY STORIES"
-                onClick={() => setActiveVideo("https://www.instagram.com/p/DbaDVVGDN0J/embed")}
-              />
-            </div>
-            <div className="col-span-1">
-              <VideoThumbnail 
-                src="/thumbnails/thumb_3.jpg" 
-                title="Finding joy in the unexpected."
-                category="JOY"
-                onClick={() => setActiveVideo("https://www.instagram.com/p/DbB4eWRTmj8/embed")}
-              />
-            </div>
-
-            {/* Row 3 */}
-            <div className="col-span-1">
-              <VideoThumbnail 
-                src="/thumbnails/thumb_4.jpg" 
-                title="Big days. Small dreams."
-                category="MOMENTS"
-                onClick={() => setActiveVideo("https://www.instagram.com/p/DbPwA6th_n8/embed")}
-              />
-            </div>
-            <div className="col-span-1">
-              <VideoThumbnail 
-                src="/thumbnails/thumb_5.jpg" 
-                title="What moves people, they often carry with them."
-                category="HUMAN STORIES"
-                onClick={() => setActiveVideo("https://www.instagram.com/p/DbGfH9izrK8/embed")}
-              />
-            </div>
-            <div className="col-span-1">
-              <VideoThumbnail 
-                src="/thumbnails/thumb_6.jpg" 
-                title="A journey of a thousand miles."
-                category="DISCOVERIES"
-                onClick={() => setActiveVideo("https://www.instagram.com/p/Da0MeCTyKQx/embed")}
-              />
-            </div>
-          </div>
-        </motion.div>
-      </div>
-
-      {/* Clean Modal for Instagram Embed */}
-      <AnimatePresence>
-        {activeVideo && (
           <motion.div 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-md"
-            onClick={() => setActiveVideo(null)}
+             className="relative w-[100px] h-[150px] md:w-[190px] md:h-[270px] [transform-style:preserve-3d] cursor-grab active:cursor-grabbing [touch-action:pan-y]"
+             style={{ rotateY: rotation }}
+             onPointerDown={() => { dragAmountRef.current = 0; }}
+             onPan={handlePan}
+             onPanStart={handlePanStart}
+             onPanEnd={handlePanEnd}
           >
-            <motion.div 
-              initial={{ scale: 0.9, opacity: 0, y: 20 }}
-              animate={{ scale: 1, opacity: 1, y: 0 }}
-              exit={{ scale: 0.9, opacity: 0, y: 20 }}
-              transition={{ type: "spring", damping: 25, stiffness: 300 }}
-              className="relative w-[90%] max-w-[400px] bg-white rounded-xl overflow-hidden shadow-2xl flex items-center justify-center"
-              onClick={(e) => e.stopPropagation()} 
-            >
-               {/* Close button */}
-               <button 
-                  className="absolute top-3 right-3 text-gray-500 hover:text-black z-20 p-2 bg-white rounded-full shadow-md transition-transform hover:scale-110"
-                  onClick={() => setActiveVideo(null)}
-               >
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                    <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" />
-                  </svg>
-               </button>
-               
-               {/* Instagram Embed iframe */}
-               <iframe 
-                  src={activeVideo}
-                  width="400" 
-                  height="480" 
-                  style={{ border: 0 }} 
-                  scrolling="no" 
-                  allowTransparency={true}
-                  className="w-full min-h-[480px] bg-white"
-               ></iframe>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </section>
-  );
-};
+             {stories.map((story, index) => {
+                const angle = index * 45; // 360 / 8 = 45 degrees per item
+                
+                return (
+                  <div 
+                    key={story.id}
+                    className="carousel-item absolute top-0 left-0 w-full h-full group shadow-2xl rounded-2xl md:rounded-[32px] overflow-hidden bg-gray-100 select-none"
+                    style={{ '--rotY': `${angle}deg` } as React.CSSProperties}
+                    onClick={() => {
+                       // Only open video if it was a real click, not a drag
+                       if (dragAmountRef.current < 10) setActiveVideo(story.link);
+                    }}
+                    onMouseEnter={() => setIsHovered(true)}
+                    onMouseLeave={() => setIsHovered(false)}
+                  >
+                     {/* Image */}
+                     <img 
+                       src={story.src} 
+                       alt={story.title}
+                       draggable={false}
+                       className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110 pointer-events-none"
+                     />
+                     
+                     {/* Gradient Overlay for Text Readability */}
+                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-90 transition-opacity duration-500 pointer-events-none"></div>
+                     
+                     {/* Play Button Overlay */}
+                     <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 scale-90 group-hover:scale-100 pointer-events-none">
+                        <div className="w-10 h-10 md:w-14 md:h-14 rounded-full bg-white/20 backdrop-blur-md border border-white/40 flex items-center justify-center text-white shadow-lg">
+                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4 md:w-6 md:h-6 ml-0.5 md:ml-1">
+                              <path fillRule="evenodd" d="M4.5 5.653c0-1.427 1.529-2.33 2.779-1.643l11.54 6.347c1.295.712 1.295 2.573 0 3.286L7.28 19.99c-1.25.687-2.779-.217-2.779-1.643V5.653Z" clipRule="evenodd" />
+                           </svg>
+                        </div>
+                     </div>
 
-// Thumbnail Component
-const VideoThumbnail = ({ src, title, category, onClick }: { src: string, title: string, category: string, onClick: () => void }) => {
-  return (
-    <motion.div 
-      className="relative aspect-[4/3] rounded-md md:rounded-lg overflow-hidden group cursor-pointer shadow-xl border border-white/10"
-      onClick={onClick}
-      whileHover={{ y: -5, scale: 1.02 }}
-      whileTap={{ scale: 0.95 }}
-      transition={{ type: "spring", stiffness: 400, damping: 17 }}
-    >
-      <img
-        src={src}
-        alt={title}
-        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-      />
-      <div className="absolute inset-0 bg-black/40 group-hover:bg-black/60 transition-colors duration-500"></div>
-      
-      {/* Central Icon Overlay */}
-      <div className="absolute inset-0 flex items-center justify-center">
-        <div className="w-14 h-14 md:w-16 md:h-16 rounded-full border-[1.5px] border-white/80 bg-black/80 backdrop-blur-sm flex items-center justify-center group-hover:bg-[#00FF66] group-hover:border-[#00FF66] transition-all duration-500 shadow-[0_0_15px_rgba(0,0,0,0.5)]">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="currentColor"
-            className="w-6 h-6 md:w-7 md:h-7 text-white group-hover:text-black transition-colors duration-500"
+                     {/* Text Overlay */}
+                     <div className="absolute bottom-0 left-0 right-0 p-2 md:p-4 flex flex-col gap-0.5 md:gap-1.5 translate-y-2 group-hover:translate-y-0 transition-transform duration-500 pointer-events-none">
+                        <p className="text-[6px] md:text-[8px] font-bold tracking-[0.2em] text-[#5dc942] uppercase">{story.category}</p>
+                        <h3 className="text-white text-[9px] md:text-sm font-medium leading-snug line-clamp-4 drop-shadow-md">{story.title}</h3>
+                     </div>
+                  </div>
+                );
+             })}
+          </motion.div>
+       </div>
+
+       {/* Mobile-only Explore Instagram Button */}
+       <div className="flex md:hidden justify-center pt-8 pb-8 z-10 relative">
+          <motion.a 
+            href="https://www.instagram.com/julianzaro"
+            target="_blank"
+            rel="noopener noreferrer"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="group flex items-center gap-4 text-xs font-bold tracking-[0.15em] uppercase text-black hover:text-[#5dc942] transition-colors"
           >
-            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" />
-          </svg>
-        </div>
-      </div>
-    </motion.div>
+             Explore Instagram
+             <div className="w-10 h-10 rounded-full border border-gray-300 flex items-center justify-center group-hover:border-[#5dc942] transition-colors duration-300">
+               <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-black group-hover:text-[#5dc942] transition-colors">
+                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                  <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+               </svg>
+             </div>
+          </motion.a>
+       </div>
+
+       {/* Clean Modal for Instagram Embed */}
+       <AnimatePresence>
+         {activeVideo && (
+           <motion.div 
+             initial={{ opacity: 0 }}
+             animate={{ opacity: 1 }}
+             exit={{ opacity: 0 }}
+             className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-xl p-4 md:p-8"
+             onClick={() => setActiveVideo(null)}
+           >
+             <motion.div 
+               initial={{ scale: 0.9, opacity: 0, y: 20 }}
+               animate={{ scale: 1, opacity: 1, y: 0 }}
+               exit={{ scale: 0.9, opacity: 0, y: 20 }}
+               transition={{ type: "spring", damping: 25, stiffness: 300 }}
+               className="relative w-full max-w-[420px] bg-white rounded-3xl overflow-hidden shadow-2xl flex items-center justify-center"
+               onClick={(e) => e.stopPropagation()} 
+             >
+                {/* Close button */}
+                <button 
+                   className="absolute top-4 right-4 text-gray-500 hover:text-black z-20 p-2.5 bg-gray-100/90 backdrop-blur-md rounded-full transition-transform hover:scale-110 shadow-sm"
+                   onClick={() => setActiveVideo(null)}
+                >
+                   <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                     <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" />
+                   </svg>
+                </button>
+                
+                {/* Instagram Embed iframe */}
+                <iframe 
+                   src={activeVideo}
+                   width="100%" 
+                   height="520" 
+                   style={{ border: 0 }} 
+                   scrolling="no" 
+                   className="w-full min-h-[520px] bg-white"
+                ></iframe>
+             </motion.div>
+           </motion.div>
+         )}
+       </AnimatePresence>
+    </section>
   );
 };
 

@@ -6,21 +6,27 @@ import Link from 'next/link';
 
 export default function Footer() {
   return (
-    <footer className="w-full text-white pt-24 pb-10 relative overflow-hidden font-sans border-t border-white/10">
+    <footer className="w-full text-white pt-16 md:pt-24 pb-8 md:pb-10 relative overflow-hidden font-sans border-t border-white/10">
       
-      {/* Background Image */}
+      {/* Background Image Desktop */}
       <div 
-        className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat pointer-events-none z-0"
+        className="hidden md:block absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat pointer-events-none z-0"
         style={{ backgroundImage: 'url("/Home Images/Hero/Julian Image 1.webp")' }}
+      ></div>
+
+      {/* Background Image Mobile */}
+      <div 
+        className="block md:hidden absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat pointer-events-none z-0"
+        style={{ backgroundImage: 'url("/Home Images/Hero/Julian Zaro Mobile Hero.webp")' }}
       ></div>
 
       {/* Dark Overlay for Readability */}
       <div className="absolute inset-0 bg-black/85 pointer-events-none z-0"></div>
 
-      <div className="max-w-[95rem] mx-auto px-6 md:px-12 relative z-10">
+      <div className="max-w-[95rem] mx-auto px-5 md:px-12 relative z-10">
         
         {/* Top Section */}
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-12 mb-20">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-10 md:gap-12 mb-12 md:mb-20">
           
           <div className="flex flex-col max-w-[400px]">
             <motion.h3 
@@ -28,7 +34,7 @@ export default function Footer() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: false, amount: 0.1 }}
               transition={{ duration: 0.8, ease: "easeOut" }}
-              className="text-3xl md:text-5xl font-medium tracking-tight leading-tight mb-6"
+              className="text-2xl md:text-5xl font-medium tracking-tight leading-tight mb-4 md:mb-6"
             >
               Ready to make <br/><span className="text-brand">real impact?</span>
             </motion.h3>
@@ -37,7 +43,7 @@ export default function Footer() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: false, amount: 0.1 }}
               transition={{ duration: 0.8, ease: "easeOut", delay: 0.1 }}
-              className="text-gray-400 text-sm md:text-base leading-relaxed mb-8"
+              className="text-gray-400 text-[13px] md:text-base leading-relaxed mb-6 md:mb-8"
             >
               Every story shared and every contribution made helps us bring positive change to communities across the globe. Join the movement today.
             </motion.p>
@@ -47,26 +53,26 @@ export default function Footer() {
               viewport={{ once: false, amount: 0.1 }}
               transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
             >
-              <button className="bg-brand hover:bg-[#4ea837] transition-colors text-white text-xs font-semibold tracking-widest uppercase py-4 px-8 relative"
+              <button className="bg-brand hover:bg-[#4ea837] transition-colors text-white text-[10px] md:text-xs font-semibold tracking-widest uppercase py-3 px-6 md:py-4 md:px-8 relative"
                       style={{ clipPath: 'polygon(0% 0%, 93% 0%, 100% 50%, 93% 100%, 0% 100%)' }}>
                 Donate Now &gt;
               </button>
             </motion.div>
           </div>
 
-          <div className="flex flex-wrap gap-12 md:gap-24">
+          <div className="flex flex-wrap gap-8 md:gap-24">
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: false, amount: 0.1 }}
               transition={{ duration: 0.8, ease: "easeOut", delay: 0.3 }}
-              className="flex flex-col gap-4"
+              className="flex flex-col gap-3 md:gap-4"
             >
-              <h4 className="text-[10px] font-bold tracking-[0.2em] uppercase text-gray-500 mb-2">Navigation</h4>
-              <Link href="#" className="text-sm text-gray-300 hover:text-brand transition-colors">Projects</Link>
-              <Link href="#" className="text-sm text-gray-300 hover:text-brand transition-colors">Stories</Link>
-              <Link href="#" className="text-sm text-gray-300 hover:text-brand transition-colors">How it Works</Link>
-              <Link href="#" className="text-sm text-gray-300 hover:text-brand transition-colors">Support</Link>
+              <h4 className="text-[9px] md:text-[10px] font-bold tracking-[0.2em] uppercase text-gray-500 mb-1 md:mb-2">Navigation</h4>
+              <Link href="#" className="text-[12px] md:text-sm text-gray-300 hover:text-brand transition-colors">Projects</Link>
+              <Link href="#" className="text-[12px] md:text-sm text-gray-300 hover:text-brand transition-colors">Stories</Link>
+              <Link href="#" className="text-[12px] md:text-sm text-gray-300 hover:text-brand transition-colors">How it Works</Link>
+              <Link href="#" className="text-[12px] md:text-sm text-gray-300 hover:text-brand transition-colors">Support</Link>
             </motion.div>
 
             <motion.div 
@@ -74,35 +80,35 @@ export default function Footer() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: false, amount: 0.1 }}
               transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }}
-              className="flex flex-col gap-4"
+              className="flex flex-col gap-3 md:gap-4"
             >
-              <h4 className="text-[10px] font-bold tracking-[0.2em] uppercase text-gray-500 mb-2">Socials</h4>
-              <Link href="#" className="text-sm text-gray-300 hover:text-brand transition-colors">Instagram</Link>
-              <Link href="#" className="text-sm text-gray-300 hover:text-brand transition-colors">Twitter</Link>
-              <Link href="#" className="text-sm text-gray-300 hover:text-brand transition-colors">YouTube</Link>
-              <Link href="#" className="text-sm text-gray-300 hover:text-brand transition-colors">LinkedIn</Link>
+              <h4 className="text-[9px] md:text-[10px] font-bold tracking-[0.2em] uppercase text-gray-500 mb-1 md:mb-2">Socials</h4>
+              <Link href="#" className="text-[12px] md:text-sm text-gray-300 hover:text-brand transition-colors">Instagram</Link>
+              <Link href="#" className="text-[12px] md:text-sm text-gray-300 hover:text-brand transition-colors">Twitter</Link>
+              <Link href="#" className="text-[12px] md:text-sm text-gray-300 hover:text-brand transition-colors">YouTube</Link>
+              <Link href="#" className="text-[12px] md:text-sm text-gray-300 hover:text-brand transition-colors">LinkedIn</Link>
             </motion.div>
           </div>
 
         </div>
 
         {/* Divider */}
-        <div className="w-full h-[1px] bg-white/10 mb-10"></div>
+        <div className="w-full h-[1px] bg-white/10 mb-8 md:mb-10"></div>
 
         {/* Bottom Section */}
-        <div className="flex flex-col md:flex-row justify-between items-center gap-6">
+        <div className="flex flex-col md:flex-row justify-between items-center gap-4 md:gap-6">
           <motion.div 
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: false, amount: 0.1 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="flex items-center gap-3"
+            className="flex items-center gap-2 md:gap-3"
           >
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 md:w-6 md:h-6">
               <path d="M12 2L22 7.77333V16.2267L12 22L2 16.2267V7.77333L12 2Z" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
               <rect x="9" y="10" width="6" height="6" stroke="white" strokeWidth="1.5" />
             </svg>
-            <span className="text-lg font-medium tracking-[0.15em] mb-1 uppercase">JULIAN ZARO</span>
+            <span className="text-base md:text-lg font-medium tracking-[0.1em] md:tracking-[0.15em] mb-0 md:mb-1 uppercase">JULIAN ZARO</span>
           </motion.div>
 
           <motion.p 
@@ -110,7 +116,7 @@ export default function Footer() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: false, amount: 0.1 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="text-xs text-gray-500 tracking-wide"
+            className="text-[10px] md:text-xs text-gray-500 tracking-wide text-center"
           >
             © {new Date().getFullYear()} Julian Zaro. All rights reserved.
           </motion.p>

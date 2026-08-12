@@ -4,6 +4,7 @@ import Link from 'next/link';
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -18,14 +19,14 @@ export default function Navbar() {
   }, []);
 
   return (
-    <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 flex justify-between items-center px-10 md:px-14 ${scrolled ? 'py-4 bg-[#111111]/95 backdrop-blur-md shadow-lg border-b border-white/5' : 'py-10 bg-transparent'}`}>
+    <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 flex justify-between items-center px-5 md:px-14 ${scrolled ? 'py-3 md:py-4 bg-[#111111]/95 backdrop-blur-md shadow-lg border-b border-white/5' : 'py-5 md:py-10 bg-transparent'}`}>
       {/* Logo */}
-      <div className="flex items-center gap-3">
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <div className="flex items-center gap-2 md:gap-3">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 md:w-7 md:h-7">
           <path d="M12 2L22 7.77333V16.2267L12 22L2 16.2267V7.77333L12 2Z" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
           <rect x="9" y="10" width="6" height="6" stroke="white" strokeWidth="1.5" />
         </svg>
-        <span className="text-xl font-medium tracking-[0.15em] mb-1 uppercase text-white">JULIAN ZARO</span>
+        <span className="text-[14px] md:text-xl font-medium tracking-[0.1em] md:tracking-[0.15em] mb-0 md:mb-1 uppercase text-white">JULIAN ZARO</span>
       </div>
 
       {/* Links */}
@@ -38,14 +39,52 @@ export default function Navbar() {
       </div>
 
       {/* Actions */}
-      <div className="flex items-center gap-8 text-white">
-        <button className="flex items-center gap-1.5 text-[13px] font-medium hover:text-gray-300 transition-colors">
+      <div className="flex items-center gap-3 md:gap-8 text-white">
+        <button className="flex items-center gap-1 md:gap-1.5 text-[11px] md:text-[13px] font-medium hover:text-gray-300 transition-colors">
           EN
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="w-3 h-3 md:w-3 md:h-3">
             <polyline points="6 9 12 15 18 9"></polyline>
           </svg>
         </button>
-        <button className="bg-brand hover:bg-[#4ea837] text-white px-6 py-2.5 rounded-full font-medium text-sm transition-colors">
+        <button className="hidden md:block bg-brand hover:bg-[#4ea837] text-white px-6 py-2.5 rounded-full font-medium text-sm transition-colors whitespace-nowrap">
+          Donate Now
+        </button>
+        
+        {/* Mobile Menu Button */}
+        <button 
+          className="md:hidden flex items-center justify-center p-1.5 ml-1 hover:text-gray-300 transition-colors focus:outline-none border-none outline-none"
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+        >
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            {isMobileMenuOpen ? (
+              <>
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+              </>
+            ) : (
+              <>
+                <line x1="3" y1="12" x2="21" y2="12"></line>
+                <line x1="3" y1="6" x2="21" y2="6"></line>
+                <line x1="3" y1="18" x2="21" y2="18"></line>
+              </>
+            )}
+          </svg>
+        </button>
+      </div>
+
+      {/* Mobile Menu Overlay */}
+      <div 
+        className={`fixed inset-0 bg-[#111111]/98 backdrop-blur-xl z-[-1] flex flex-col items-center justify-center gap-8 transition-transform duration-300 md:hidden ${isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}
+        style={{ height: '100dvh' }}
+      >
+        <Link href="/" className="text-xl font-medium text-white tracking-[0.2em] uppercase hover:text-brand transition-colors" onClick={() => setIsMobileMenuOpen(false)}>Home</Link>
+        <Link href="#" className="text-xl font-medium text-white tracking-[0.2em] uppercase hover:text-brand transition-colors" onClick={() => setIsMobileMenuOpen(false)}>Stories</Link>
+        <Link href="#" className="text-xl font-medium text-white tracking-[0.2em] uppercase hover:text-brand transition-colors" onClick={() => setIsMobileMenuOpen(false)}>How it Works</Link>
+        <Link href="#" className="text-xl font-medium text-white tracking-[0.2em] uppercase hover:text-brand transition-colors" onClick={() => setIsMobileMenuOpen(false)}>Support</Link>
+        <Link href="/contact" className="text-xl font-medium text-white tracking-[0.2em] uppercase hover:text-brand transition-colors" onClick={() => setIsMobileMenuOpen(false)}>Contact</Link>
+        
+        {/* Mobile Donate Button */}
+        <button className="mt-4 bg-brand hover:bg-[#4ea837] text-white px-8 py-3 rounded-full font-medium text-lg transition-colors whitespace-nowrap" onClick={() => setIsMobileMenuOpen(false)}>
           Donate Now
         </button>
       </div>
