@@ -34,7 +34,7 @@ export default function Hero() {
 
   return (
     <div 
-      className="relative w-full h-screen text-white overflow-hidden flex flex-col group" 
+      className="relative w-full h-[100dvh] text-white overflow-hidden flex flex-col group" 
       onMouseMove={handleMouseMove}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
@@ -71,7 +71,7 @@ export default function Hero() {
       <Navbar />
 
       {/* Main Content */}
-      <div className="relative z-10 flex-1 flex flex-col justify-end md:justify-center px-6 md:px-14 pb-16 md:pb-12 pt-[12vh] md:pt-[15vh]">
+      <div className="relative z-10 flex-1 flex flex-col justify-end md:justify-center px-6 md:px-14 pb-10 md:pb-12 pt-[12vh] md:pt-[15vh]">
         
         {/* Giant Hero Text */}
         <div className="h-[14vw] md:h-[9vw] relative w-full overflow-visible" style={{ perspective: '1000px' }}>
