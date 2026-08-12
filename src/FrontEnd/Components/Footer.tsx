@@ -104,11 +104,7 @@ export default function Footer() {
             transition={{ duration: 0.8, ease: "easeOut" }}
             className="flex items-center gap-2 md:gap-3"
           >
-            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 md:w-6 md:h-6">
-              <path d="M12 2L22 7.77333V16.2267L12 22L2 16.2267V7.77333L12 2Z" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-              <rect x="9" y="10" width="6" height="6" stroke="white" strokeWidth="1.5" />
-            </svg>
-            <span className="text-base md:text-lg font-medium tracking-[0.1em] md:tracking-[0.15em] mb-0 md:mb-1 uppercase">JULIAN ZARO</span>
+            <img src="/Logo/Julian Zaro.png" alt="Julian Zaro Logo" className="h-10 md:h-14 object-contain" />
           </motion.div>
 
           <motion.p 
