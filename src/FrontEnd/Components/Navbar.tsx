@@ -21,8 +21,9 @@ export default function Navbar() {
   return (
     <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 flex justify-between items-center px-5 md:px-14 ${scrolled ? 'py-3 md:py-4 bg-[#111111]/95 backdrop-blur-md shadow-lg border-b border-white/5' : 'py-5 md:py-10 bg-transparent'}`}>
       {/* Logo */}
-      <Link href="/" className="flex items-center">
+      <Link href="/" className="flex items-center gap-2 md:gap-3">
         <img src="/Logo/Julian Zaro.png" alt="Julian Zaro Logo" className="h-10 md:h-14 object-contain" />
+        <span className="text-[14px] md:text-xl font-medium tracking-[0.1em] md:tracking-[0.15em] mb-0 md:mb-1 uppercase text-white">JULIAN ZARO</span>
       </Link>
 
       {/* Links */}

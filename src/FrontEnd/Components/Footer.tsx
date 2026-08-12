@@ -105,6 +105,7 @@ export default function Footer() {
             className="flex items-center gap-2 md:gap-3"
           >
             <img src="/Logo/Julian Zaro.png" alt="Julian Zaro Logo" className="h-10 md:h-14 object-contain" />
+            <span className="text-base md:text-lg font-medium tracking-[0.1em] md:tracking-[0.15em] mb-0 md:mb-1 uppercase">JULIAN ZARO</span>
           </motion.div>
 
           <motion.p 
